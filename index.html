@@ -28,6 +28,12 @@
             border-radius: 4px;
             font-family: monospace;
         }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            overflow: auto;
+        }
         .endpoint {
             font-weight: bold;
             color: #0070f3;
@@ -57,27 +63,6 @@
         <p>Configure Retell AI to send a POST request to this webhook URL.</p>
         <p>The webhook will always return the current time in Melbourne, Australia.</p>
     </div>
-
-    <script>
-        // Simple script to test the API
-        async function testAPI() {
-            try {
-                const response = await fetch('/api/webhook', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await response.json();
-                console.log('API Response:', data);
-            } catch (error) {
-                console.error('Error testing API:', error);
-            }
-        }
-        
-        // Uncomment to test automatically
-        // testAPI();
-    </script>
 </body>
 </html>
 

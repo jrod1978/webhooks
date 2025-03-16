@@ -1,8 +1,9 @@
 {
-  "name": "my-v0-project",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "echo 'no build script'"
+  "name": "melbourne-time-webhook",
+  "version": "1.0.0",
+  "description": "A webhook that returns the current time in Melbourne, Australia",
+  "engines": {
+    "node": ">=14"
   }
 }
+
