@@ -8,10 +8,20 @@ export default function handler(req, res) {
   }
 
   try {
-    // Hardcoded timezone for Melbourne, Australia
-    const timezone = "Australia/Melbourne"
+    // Get timezone from request body, default to 'Australia/Melbourne' if not provided
+    const { timezone = "Australia/Melbourne" } = req.body || {}
 
-    // Get current date and time in Melbourne
+    // Validate the timezone
+    if (!isValidTimezone(timezone)) {
+      return res.status(400).json({
+        success: false,
+        error: `Invalid timezone: ${timezone}`,
+        message:
+          'Please provide a valid IANA timezone identifier (e.g., "America/New_York", "Europe/London", "Australia/Melbourne")',
+      })
+    }
+
+    // Get current date and time in the specified timezone
     const now = new Date()
 
     const options = {
@@ -40,6 +50,21 @@ export default function handler(req, res) {
       success: false,
       error: error.message || "An error occurred while processing the request",
     })
+  }
+}
+
+/**
+ * Check if a timezone is valid
+ * @param {string} timezone - The timezone to check
+ * @returns {boolean} Whether the timezone is valid
+ */
+function isValidTimezone(timezone) {
+  try {
+    // This will throw an error for invalid timezones
+    Intl.DateTimeFormat(undefined, { timeZone: timezone })
+    return true
+  } catch (e) {
+    return false
   }
 }
 
