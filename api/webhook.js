@@ -1,4 +1,4 @@
-export default function handler(req, res) {
+module.exports = (req, res) => {
   try {
     // Hardcoded timezone for Melbourne, Australia
     const timezone = "Australia/Melbourne"
